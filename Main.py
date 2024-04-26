@@ -15,6 +15,7 @@ if connection_status is False:
     quit()
 else:
     Check.CheckDatabase() # Checking for the Requirements of the Project
+    Check.CreateTables()
 
 # Other.ClearScreen() #Clear the terminal Window
 
@@ -23,6 +24,7 @@ else:
 # Ask for the Input and Process it
 
 Other.Menu()
+
 
 while True:
     ans = input("Choose an Option Number: ")
