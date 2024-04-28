@@ -15,7 +15,7 @@ if connection_status is False:
     quit()
 else:
     Check.CheckDatabase() # Checking for the Requirements of the Project
-    Check.CreateTables()
+    Check.CreateTables() # Checking for the CreateTables of the Project
 
 # Other.ClearScreen() #Clear the terminal Window
 
@@ -23,10 +23,9 @@ else:
 
 # Ask for the Input and Process it
 
-Other.Menu()
-
 
 while True:
+    Other.Menu()
     ans = input("Choose an Option Number: ")
     if ans == "1":
         User.OrderCoffee()

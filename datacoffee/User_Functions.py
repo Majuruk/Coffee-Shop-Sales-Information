@@ -193,6 +193,7 @@ def OrderCoffee():
             break
     
     #Insert Product Size
+    while True:
         Size = input("Enter your Product Size \n(Ex. Regular/Large/Not Defined/ Small) \n: ")
         if len(Size) == 0:
             print("Please Enter a Product Size")
@@ -203,7 +204,7 @@ def OrderCoffee():
     
     Time_of_Transaction = datetime.datetime.now()
     date = Time_of_Transaction.date()
-    date = date.strftime("%d-%m-%y")
+    date = date.strftime("%y-%m-%d")
 
     # Creating Unique order_id for each Order coffee
     id = random.randint(1, 10000)
@@ -219,13 +220,28 @@ def OrderCoffee():
         else:
             break
     
+    #check order again
+    while True:
+        check = input("Are you check in your order? (Y/N)")
+        if check in ["Y", "y"]:
+            print("Transaction_no: ",Transaction_no," Type: ",type(Transaction_no))
+            print("Date: ",date," Type: ",type(date))
+            print("Order_id: ",id," Type: ",type(id))
+            print("Customer_name: ",Name," Type: ",type(Name))
+            print("Your Phone: ",Mobile," Type: ",type(Mobile))
+            print("Product_category: ",Category," Type: ",type(Category))
+            print("Product_type: ",Type," Type: ",type(Type))
+            print("Product_size: ",Size," Type: ",type(Size))
+        else:
+            break
+
     while True:
         ask = input("Are you Sure your Order coffee? (Y/N)")
         if ask in ["Y", "y"]:
             print("Confrim order...")
             try:
                 query = "INSERT INTO coffee_order values({}, '{}', '{}', '{}', '{}', '{}', '{}', {})".format(
-                    Transaction_no, Name, Mobile, Category, Type, Size, date, id)
+                    Transaction_no, date, id, Name, Mobile, Category, Type, Size)
                 cur.execute(query)
             except DataError:
                 print("Error in ordering!")
