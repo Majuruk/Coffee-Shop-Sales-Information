@@ -28,16 +28,15 @@ while True:
     Other.Menu()
     ans = input("Choose an Option Number: ")
     if ans == "1":
-        User.OrderCoffee()
+        User.OrderCoffee() # Insert
     elif ans == "2":
-        User.CancelOrdering()
+        User.CancelOrdering() # Delete
     elif ans == "3":
-        User.ShowOrder()
+        User.ShowOrder() # Select order
     elif ans == "4":
-        User.Datacoffee()
+        User.Datacoffee() # Select coffee shop --> Update
     elif ans == "5":
-        Other.ClearScreen()
-        Other.Menu()
+        Other.ClearScreen() # cls
     elif ans == "6":
         Other.Menu()
     elif ans == "7":

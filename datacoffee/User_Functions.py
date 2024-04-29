@@ -114,8 +114,8 @@ def ShowOrder():
         print("No Records Found!")
     else:
         order_no = 1
-        print(["Transaction_id", "Customer_Name", "Phone", "Product_category",
-                        "Product_type", "Time_of_Transaction", "Order_id"])
+        print(["Transaction_id", "Transaction_date", "Order_id", "Customer_Name", "Phone", "Product_category",
+                        "Product_type", "Size"])
         for x in result:
             print("Order NO", order_no, ":", x, "\n")
             order_no += 1
@@ -133,6 +133,8 @@ def OrderCoffee():
     mn = mysql.connector.connect(host="localhost", user="root",
                                  password="123456789", database="coffeeshop")
     cur = mn.cursor()
+
+    cur.execute("USE coffeeshop;")
 
 
     # Insert Transaction_NO
@@ -204,12 +206,13 @@ def OrderCoffee():
     
     Time_of_Transaction = datetime.datetime.now()
     date = Time_of_Transaction.date()
-    date = date.strftime("%y-%m-%d")
+    date = date.strftime("%Y-%m-%d")
 
     # Creating Unique order_id for each Order coffee
     id = random.randint(1, 10000)
     cur.execute("SELECT Order_id FROM coffee_order")
     result = cur.fetchall()
+    print(result)
     Used_ID = []
     for x in result:
         for y in x:
@@ -235,20 +238,28 @@ def OrderCoffee():
         else:
             break
 
+    mn = mysql.connector.connect(host="localhost", user="root",
+                                 password="123456789", database="coffeeshop")
+    cur = mn.cursor()
+
+    cur.execute("USE coffeeshop;")
+
     #Sure your Order
     while True:
         ask = input("Are you Sure your Order coffee? (Y/N)")
         if ask in ["Y", "y"]:
             print("Confrim order...")
             try:
-                query = "INSERT INTO coffee_order values({}, '{}', '{}', '{}', '{}', '{}', '{}', {})".format(
+                print('Hello world')
+                query = "INSERT INTO coffee_order values({}, '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(
                     Transaction_no, date, id, Name, Mobile, Category, Type, Size)
+        
                 cur.execute(query)
+                mn.commit()
             except DataError:
                 print("Error in ordering!")
             else:
                 print("Successfully ordered!")
-                mn.commit
                 cur.close()
                 mn.close()
                 break
@@ -259,6 +270,7 @@ def OrderCoffee():
             break
         else:
             print("Please Enter Y (Yes) or N (No)!")
+    
 
 
 def CancelOrdering():
@@ -293,8 +305,8 @@ def CancelOrdering():
                 if len(result) == 0:
                     print("NO Records Found!")
                     break
-                print(["Transaction_id", "Customer_Name", "Phone", "Product_category",
-                        "Product_type", "Time_of_Transaction", "Order_id"])
+                print(["Transaction_id", "Transaction_date", "Order_id", "Customer_Name", "Phone", "Product_category",
+                        "Product_type", "Size"])
                 for x in result:
                     print(x)
                 while True:
