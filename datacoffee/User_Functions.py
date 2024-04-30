@@ -101,7 +101,7 @@ def ShowOrder():
     Parameters -> None
     """
 
-    mn = mysql.connector.connect(host="locaalhost", user="root",
+    mn = mysql.connector.connect(host="localhost", user="root",
                                  password="123456789", database="coffeeshop")
     cur = mn.cursor()
 
