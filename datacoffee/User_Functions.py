@@ -15,18 +15,45 @@ current_date = datetime.date.today()
 
 
 # Functions
+def UpdateCoffee():
+    """
+    Updatecoffee() -> Update New Mobile Number coffee shop editing to the Requirement
+
+    Parameters -> None
+    """
+    mn = mysql.connector.connect(host="localhost", user="root",
+                                 password="123456789", database="coffeeshop")
+    cur = mn.cursor()
+
+    your_name = input("Please Enter your Name: ")
+    mobile_on = input("Please Enter your 10 Digit Mobile Number: ")
+    new_mobile_number = input("Please Enter your new 10 Digit Mobile Number: ")
+
+    sql = 'UPDATE coffee_order SET Phone = %s where Customer_Name= %s AND Phone= %s'
+
+    value = (new_mobile_number, your_name, mobile_on)
+
+    cur.execute(sql, value)
+
+    print("Update data successfully!")
+
+    mn.commit()
+    cur.close()
+    mn.close()
+
+
 def Datacoffee():
     """
     Datacoffee() -> Show the List of Data Coffee Shop according to the User Requirement
 
     Parameters -> None
     """
-    #setting database
-    host="localhost"
-    user="root",
-    password="123456789"
+    # setting database
+    host = "localhost"
+    user = "root"
+    password = "123456789"
     port = 3306
-    database="coffeeshop"
+    database = "coffeeshop"
 
     con_string = f'mysql+pymysql://{user}:{password}@{host}:{port}/{database}'
     con = create_engine(con_string)
@@ -42,8 +69,8 @@ def Datacoffee():
             csv_name = 'Overview_Product'
             sql = '''
                 SELECT Product_category, Product_type, Total_Bill
-                from coffeeshop.data_info
-                group by Product_category
+                FROM coffeeshop.coffee_info
+                GROUP BY Product_category
             '''
             df = pd.read_sql(sql, con)
             pd.set_option('display.max_rows', None)
@@ -59,13 +86,10 @@ def Datacoffee():
             Size = input('Input Product Size \nRegular\nLarge\nNot Defined\nSmall\n: ')
             print('-----------------------------------------------')
             sql = f'''
-                Select
-                    Product_category, 
-                    Product_type, 
-                    Size,
-                from coffeeshop.data_info
-                group by Product_category, Product_type, Size
-                Having Product_type = '{Product}'and Product_category = '{Category}' and Size = '{Size}'
+                SELECT Product_category, Product_type, Size
+                FROM coffeeshop.coffee_info
+                GROUP BY Product_category, Product_type, Size
+                HAVING Product_type = '{Product}' AND Product_category = '{Category}' AND Size = '{Size}'
             '''
             df = pd.read_sql(sql, con)
             if len(df) == 0:
@@ -80,7 +104,7 @@ def Datacoffee():
     if len(df) != 0:
         while True:
             ask = input("Do you want to export a csv file? (Y/N): ")
-            if ask in ["Y","y"]:
+            if ask in ["Y", "y"]:
                 df.to_csv(f'{csv_name}.csv', index_label='id')
                 print('Please wait for 3 seconds')
                 time.sleep(3)
@@ -212,7 +236,7 @@ def OrderCoffee():
     id = random.randint(1, 10000)
     cur.execute("SELECT Order_id FROM coffee_order")
     result = cur.fetchall()
-    print(result)
+    # print(result)
     Used_ID = []
     for x in result:
         for y in x:

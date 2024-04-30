@@ -34,7 +34,7 @@ while True:
     elif ans == "3":
         User.ShowOrder() # Select order
     elif ans == "4":
-        User.Datacoffee() # Select coffee shop --> Update
+        User.UpdateCoffee() # Update coffee shop
     elif ans == "5":
         Other.ClearScreen() # cls
     elif ans == "6":

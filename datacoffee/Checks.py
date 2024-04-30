@@ -65,7 +65,7 @@ def CreateTables():
 
         cur.execute("create table coffee_info (transaction_id int NOT NULL, transaction_date Date NOT NULL, transaction_time Time NOT NULL, store_id int NOT NULL, store_location varchar(50), product_id int NOT NULL, transaction_qty int NOT NULL, unit_price int NOT NULL, Total_bill int NOT NULL, product_category varchar(50) NOT NULL, product_type varchar(100) NOT NULL, product_detail varchar(100) NOT NULL, Size varchar(20) NOT NULL, Month_Name varchar(10) NOT NULL, Day_Name varchar(10) NOT NULL, Hour int NOT NULL, Month int NOT NULL, Day_of_week int NOT NULL);")
     
-        cur.execute("create table coffee_order (Transaction_id int NOT NULL Auto_increment, Transaction_date Date NOT NULL, Order_id int NOT NULL Auto_increment, Customer_Name varchar(30) NOT NULL, Phone varchar(20) NOT NULL, Product_category varchar(50) NOT NULL, Product_type varchar(100) NOT NULL, Size varchar(20) NOT NULL);")
+        cur.execute("create table coffee_order (Transaction_id int NOT NULL Auto_increment, Transaction_date Date NOT NULL, Order_id int NOT NULL, Customer_Name varchar(30) NOT NULL, Phone varchar(20) NOT NULL, Product_category varchar(50) NOT NULL, Product_type varchar(100) NOT NULL, Size varchar(20) NOT NULL);")
 
     except:
         print("Table is exist!")

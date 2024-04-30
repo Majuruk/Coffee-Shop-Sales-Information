@@ -44,7 +44,7 @@ def Menu(answer="Yes"):
         print("1. Order coffee")
         print("2. Cancel order coffee")
         print("3. Show my order")
-        print("4. Search Menu Coffee Shop Information")
+        print("4. Update New Mobile Number Coffee Shop Information")
         print("5. Clear Screen")
         print("6. Menu")
         print("7. About")
