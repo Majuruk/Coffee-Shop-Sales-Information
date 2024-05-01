@@ -1,11 +1,11 @@
 # This Module has the Functions to Insert the Data in the MySQL Tables
 
-#Importing Required Modules
+# Importing Required Modules
 
-# import csv
-# import mysql.connector as con
+import csv
+import mysql.connector as con
 
-# # Functions
+# Functions
 
 
 def InsertDataCoffee():
