@@ -63,9 +63,11 @@ def CreateTables():
 
     try:
 
-        cur.execute("create table coffee_info (transaction_id varchar(20) NOT NULL, transaction_date varchar(20) NOT NULL, transaction_time varchar(20) NOT NULL, store_id varchar(10) NOT NULL, store_location varchar(70) NOT NULL, product_id varchar(10) NOT NULL, transaction_qty varchar(10) NOT NULL, unit_price varchar(10) NOT NULL, Total_bill varchar(10) NOT NULL, product_category varchar(50) NOT NULL, product_type varchar(100) NOT NULL, product_detail varchar(100) NOT NULL, Size varchar(20) NOT NULL, Month_Name varchar(10) NOT NULL, Day_Name varchar(10) NOT NULL, Hour varchar(10) NOT NULL, Month varchar(10) NOT NULL, Day_of_week varchar(10) NOT NULL);")
+        cur.execute("create table coffee_info (transaction_id varchar(20) NOT NULL, transaction_date varchar(20) NOT NULL, transaction_time varchar(20) NOT NULL, store_id varchar(10) NOT NULL, store_location varchar(70) NOT NULL, product_id varchar(10) NOT NULL, transaction_qty varchar(10) NOT NULL, unit_price varchar(10) NOT NULL, Total_Bill varchar(10) NOT NULL, product_category varchar(50) NOT NULL, product_type varchar(100) NOT NULL, product_detail varchar(100) NOT NULL, Size varchar(20) NOT NULL, Month_Name varchar(10) NOT NULL, Day_Name varchar(10) NOT NULL, Hour varchar(10) NOT NULL, Month varchar(10) NOT NULL, Day_of_week varchar(10) NOT NULL);")
     
         cur.execute("create table coffee_order (Transaction_id int NOT NULL Auto_increment, Transaction_date Date NOT NULL, Order_id int NOT NULL, Customer_Name varchar(30) NOT NULL, Phone varchar(20) NOT NULL, Product_category varchar(50) NOT NULL, Product_type varchar(100) NOT NULL, Size varchar(20) NOT NULL);")
+
+        Insert.InsertDataCoffee()
 
     except:
         print("Table is exist!")
