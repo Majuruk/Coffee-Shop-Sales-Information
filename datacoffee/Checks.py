@@ -68,7 +68,7 @@ def CreateTables():
         cur.execute("create table coffee_order (Transaction_id int NOT NULL Auto_increment, Transaction_date Date NOT NULL, Order_id int NOT NULL, Customer_Name varchar(30) NOT NULL, Phone varchar(20) NOT NULL, Product_category varchar(50) NOT NULL, Product_type varchar(100) NOT NULL, Size varchar(20) NOT NULL);")
 
         Insert.InsertDataCoffee()
-
+        
     except:
         print("Table is exist!")
 
