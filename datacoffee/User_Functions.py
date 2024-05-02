@@ -7,8 +7,7 @@ import datetime
 import time
 from mysql.connector import DataError
 import random
-import pandas as pd
-from sqlalchemy import create_engine
+
 
 # Defining Some Initital Variables
 current_date = datetime.date.today()
