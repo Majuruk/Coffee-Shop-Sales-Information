@@ -182,8 +182,13 @@ def OrderCoffee():
             print("Product_category: ",Category," Type: ",type(Category))
             print("Product_type: ",Type," Type: ",type(Type))
             print("Product_size: ",Size," Type: ",type(Size))
-        else:
             break
+        elif check in ["N", "n"]:
+            print("Confirm on your order...")
+            break
+        else:
+            print("Please Enter Y (Yes) or N (No)!")
+
 
     mn = mysql.connector.connect(host="localhost", user="root",
                                  password="123456789", database="coffeeshop")
